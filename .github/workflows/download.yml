@@ -17,7 +17,7 @@ jobs:
                -o downloaded/texstudio.exe
 
       - name: Upload as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: texstudio-windows
           path: downloaded/texstudio.exe
