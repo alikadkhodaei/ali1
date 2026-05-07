@@ -1,0 +1,24 @@
+name: Download OpenLaTeXStudio
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create folder
+        run: mkdir -p downloaded
+
+      - name: Download OpenLaTeXStudio EXE file
+        run: |
+          curl -L "https://github.com/sebbrudzinski/Open-LaTeX-Studio/releases/download/v1.5/OpenLaTeXStudio-app-1.5.0-windows.exe" \
+               -o downloaded/OpenLaTeXStudio.exe
+
+      - name: Upload as GitHub Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenLaTeXStudio-windows
+          path: downloaded/OpenLaTeXStudio.exe
+
