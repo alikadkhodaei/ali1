@@ -16,12 +16,20 @@ jobs:
 
       - name: Download TeXstudio EXE
         run: |
-          curl -L "https://github.com/texstudio-org/texstudio/releases/download/4.9.2/texstudio-4.9.2-win-qt6-signed.exe" \
-               -o downloaded/texstudio.exe
+          curl -L --fail --show-error \
+          "https://github.com/texstudio-org/texstudio/releases/download/4.9.2/texstudio-4.9.2-win-qt6-signed.exe" \
+          -o downloaded/texstudio.exe
+
+      - name: Check file exists
+        run: |
+          echo "Listing downloaded folder:"
+          ls -lh downloaded
+          echo "-----"
+          echo "File type:"
+          file downloaded/texstudio.exe || echo "File not found!"
 
       - name: Upload as artifact
         uses: actions/upload-artifact@v5
         with:
           name: texstudio-windows
           path: downloaded/texstudio.exe
-
